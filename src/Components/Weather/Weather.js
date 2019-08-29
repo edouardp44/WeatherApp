@@ -40,7 +40,6 @@ class Weather extends Component {
         fetch(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=${event.target.value}&APPID=fcef1558e0f353f59ebb3001bb08d820&lang=fr`)
         .then(result => result.json())
         .then((result) => {
-            console.log(result)
             this.setState({
                 humidity: result.main.humidity,
                 cityName: result.name,
