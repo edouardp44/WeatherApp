@@ -37,15 +37,22 @@ class Weather extends Component {
     }
 
     handleChange(event) {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${event.target.value},fr&APPID=fcef1558e0f353f59ebb3001bb08d820`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=${event.target.value},fr&APPID=fcef1558e0f353f59ebb3001bb08d820`)
         .then(result => result.json())
         .then((result) => {
             console.log(result)
+            this.setState({
+                humidity: result.main.humidity,
+                cityName: result.name,
+                windSpeed: result.wind.speed,
+                temp: result.main.temp,
+                iconId: result.weather[0].icon
+            })
         });
     }
 
     handleSubmit(event) {
-        alert('Le nom a été soumis : ' + this.state.value);
+        alert('La ville a été soumis : ' + this.state.value);
         event.preventDefault();
       }
 
