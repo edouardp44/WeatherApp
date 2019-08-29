@@ -23,7 +23,7 @@ class Weather extends Component {
             fetch(`https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${success.coords.latitude}&lon=${success.coords.longitude}&APPID=fcef1558e0f353f59ebb3001bb08d820`)
             .then(res => res.json())
             .then((res) => {
-                this.setState({
+                this.setState({     
                     humidity: res.main.humidity,
                     cityName: res.name,
                     windSpeed: res.wind.speed,
@@ -37,7 +37,7 @@ class Weather extends Component {
     }
 
     handleChange(event) {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=${event.target.value},fr&APPID=fcef1558e0f353f59ebb3001bb08d820`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=${event.target.value}&APPID=fcef1558e0f353f59ebb3001bb08d820&lang=fr`)
         .then(result => result.json())
         .then((result) => {
             console.log(result)
@@ -63,13 +63,12 @@ class Weather extends Component {
                     <label for="city">
                     Ville :
                     </label>
-                    <input type="text" name='city' value={this.state.value} onChange={this.handleChange} />
+                    <input type="text" name='city' onChange={this.handleChange} required/>
                     <input type="submit" value="Envoyer"/>
                 </form>
-
                 <p>Météo</p><img src={`http://openweathermap.org/img/wn/${this.state.iconId}.png`}></img>
                 <p>Vous êtes à {this.state.cityName}</p>
-                <p>Le vent est a une vitesse de {this.state.windSpeed}m/s </p>
+                <p>Le vent est à une vitesse de {this.state.windSpeed}m/s </p>
                 <p>Il fait actuellement {this.state.temp}°C</p>
                 <p>Le taux d'humidité est de {this.state.humidity}%</p>
             </div>
